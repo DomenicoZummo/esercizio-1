@@ -11,6 +11,8 @@ const NewForm = (props) => {
     console.log(event.target.value);
   };
 
+  const [clickState, setStateClick] = useState(false);
+
   const amountChangeHandler = (event) => {
     setAmount(event.target.value);
     console.log(event.target.value);
@@ -35,7 +37,30 @@ const NewForm = (props) => {
     setTitle("");
     setAmount("");
     setDate("");
+    setStateClick(false);
   };
+
+  const clickButton = () => {
+    setStateClick(true);
+  };
+
+  const clickCancel = () => {
+    setTitle("");
+    setAmount("");
+    setDate("");
+    setStateClick(false);
+  };
+
+  if (!clickState) {
+    return (
+      <form>
+        <div className="new-expense__actions center-button">
+          <button onClick={clickButton}>Add expense</button>
+        </div>
+      </form>
+    );
+  }
+
   return (
     <form onSubmit={submitHandler}>
       <div className="new-expense__controls">
@@ -71,6 +96,7 @@ const NewForm = (props) => {
       </div>
 
       <div className="new-expense__actions">
+        <button onClick={clickCancel}>Cancel</button>
         <button type="submit">Add expense</button>
       </div>
     </form>

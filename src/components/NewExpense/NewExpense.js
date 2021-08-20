@@ -4,7 +4,7 @@ const NewExspense = (props) => {
   const getItemForm = (item) => {
     const newData = {
       ...item,
-      id: 10,
+      id: new Date(),
     };
     props.getDataArray(newData);
   };
